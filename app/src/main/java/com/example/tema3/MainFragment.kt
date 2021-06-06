@@ -26,7 +26,7 @@ class MainFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val db: DatabaseReference = FirebaseDatabase.getInstance("https://bookdatabase-f3456-default-rtdb.firebaseio.com/").reference
+        val db: DatabaseReference = FirebaseDatabase.getInstance("https://androidbooklibrary-default-rtdb.firebaseio.com").reference
         val view = inflater.inflate(R.layout.main_fragment, container, false)
         val title = view?.findViewById<TextInputEditText>(R.id.title)
         val author = view?.findViewById<TextInputEditText>(R.id.author)
@@ -58,7 +58,7 @@ class MainFragment: Fragment() {
                     }
                 }
                 if(validate) {
-                    db.child("BookDataBase").push().setValue(book)
+                    db.child("Books").push().setValue(book)
                     addBookInRecyclerView(view, book)
                 }
             }
@@ -69,7 +69,7 @@ class MainFragment: Fragment() {
     private fun setUpRecyclerView(view: View) {
         val recyclerView = view.findViewById<RecyclerView>(R.id.book_list)
         val layoutManager: LinearLayoutManager = LinearLayoutManager(activity)
-        val booksRef: DatabaseReference = FirebaseDatabase.getInstance("https://bookdatabase-f3456-default-rtdb.firebaseio.com/").reference.child("BookDataBase")
+        val booksRef: DatabaseReference = FirebaseDatabase.getInstance("https://androidbooklibrary-default-rtdb.firebaseio.com").reference.child("Books")
         recyclerView?.layoutManager = layoutManager
         booksRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -80,13 +80,17 @@ class MainFragment: Fragment() {
                 val adapter = BookAdapter(books, OnBookItemClick { book -> changeFragment(book) })
                 recyclerView?.adapter=adapter
             }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
         })
     }
 
     private fun modifyRecyclerView(view: View, book: Book) {
         val recyclerView = view.findViewById<RecyclerView>(R.id.book_list)
         val layoutManager: LinearLayoutManager = LinearLayoutManager(activity)
-        val booksRef: DatabaseReference = FirebaseDatabase.getInstance("https://bookdatabase-f3456-default-rtdb.firebaseio.com/").reference.child("BookDataBase")
+        val booksRef: DatabaseReference = FirebaseDatabase.getInstance("https://androidbooklibrary-default-rtdb.firebaseio.com").reference.child("Books")
         recyclerView?.layoutManager = layoutManager
         booksRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -99,18 +103,26 @@ class MainFragment: Fragment() {
                 val adapter = BookAdapter(books, OnBookItemClick { book -> changeFragment(book) })
                 recyclerView?.adapter=adapter
             }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
         })
     }
     private fun addBookInRecyclerView(view: View, book: Book) {
         val recyclerView = view.findViewById<RecyclerView>(R.id.book_list)
         val layoutManager: LinearLayoutManager = LinearLayoutManager(activity)
-        val booksRef: DatabaseReference = FirebaseDatabase.getInstance("https://bookdatabase-f3456-default-rtdb.firebaseio.com/").reference.child("BookDataBase")
+        val booksRef: DatabaseReference = FirebaseDatabase.getInstance("https://androidbooklibrary-default-rtdb.firebaseio.com").reference.child("Books")
         recyclerView?.layoutManager = layoutManager
         booksRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 books.add(book)
                 val adapter = BookAdapter(books, OnBookItemClick { book -> changeFragment(book) })
                 recyclerView?.adapter=adapter
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
             }
         })
     }

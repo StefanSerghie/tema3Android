@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "608716471114",
+    "firebase_url": "https://bookdatabase-f3456-default-rtdb.firebaseio.com",
+    "project_id": "bookdatabase-f3456",
+    "storage_bucket": "bookdatabase-f3456.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:608716471114:android:5dbbabbd7a421256cadfb3",
+        "android_client_info": {
+          "package_name": "com.example.tema3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "608716471114-05gj9bf0csb17oe2sheeqov25l5ntdn9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGgnssIx9gONQTjc9_8QYWGUxGXMr0tIc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "608716471114-05gj9bf0csb17oe2sheeqov25l5ntdn9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
